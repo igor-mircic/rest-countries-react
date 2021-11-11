@@ -1,0 +1,31 @@
+### https://restcountries.com/ --- API Homepage
+### Testing difference in response times when getting all data vs filtered.
+
+### Conclusion! 
+### Filtered requests are 30-50% faster on average.
+### V2 API is 100-200ms faster since it returns less data.
+
+### Version 2 API
+@urlAllV2 = https://restcountries.com/v2/all
+@urlOneV2 = https://restcountries.com/v2/alpha/usa
+@fieldsV2 = flags,name,nativeName,alpha3Code,population,region,subregion,capital,topLevelDomain,currencies,languages,borders
+
+GET {{urlAllV2}}
+### ~ 900ms
+GET {{urlAllV2}}?fields={{fieldsV2}}
+### ~ 600ms
+GET {{urlOneV2}}?fields={{fieldsV2}}
+### ~ 450ms
+
+
+### Version 3 API
+@urlAllV3 = https://restcountries.com/v3.1/all
+@urlOneV3 = https://restcountries.com/v3.1/alpha/usa
+@fieldsV3 = flags,name,cioc,population,region,subregion,capital,tld,currencies,languages,borders
+
+GET {{urlAllV3}}
+### ~1500ms
+GET {{urlAllV3}}?fields={{fieldsV3}}
+### ~800ms
+GET {{urlOneV3}}?fields={{fieldsV3}}
+### ~450ms
