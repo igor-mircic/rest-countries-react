@@ -3,14 +3,14 @@ export interface ICountry {
   flag: string
   name: string
   nativeName: string
-  population: number
+  population: string
   region: Region
   subregion: string
   capital: string
   tld: string
   currencies: string
   languages: string
-  borders: string[]
+  borders?: Border[]
 }
 
 export interface ICountryAPI {
@@ -23,7 +23,7 @@ export interface ICountryAPI {
   subregion: string
   region: Region
   population: number
-  borders: string[]
+  borders?: string[]
   nativeName: string
   flags: Flags
 }
@@ -37,6 +37,11 @@ export type Region =
   | 'Europe'
   | 'Oceania'
   | 'Polar'
+
+export interface Border {
+  name: string
+  id: string
+}
 
 interface Currency {
   code: string

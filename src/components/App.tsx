@@ -1,3 +1,12 @@
+import { CountriesProvider } from '../contexts/Countries'
+import { Home } from '../pages/Home'
+
 export const App = () => {
-  return <div></div>
+  return (
+    <>
+      <CountriesProvider>
+        <Home />
+      </CountriesProvider>
+    </>
+  )
 }
