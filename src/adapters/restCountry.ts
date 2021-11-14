@@ -3,7 +3,7 @@ import { ICountry, ICountryAPI } from '../interfaces/ICountry'
 export const restCountryAdapter = (countries: ICountryAPI[]): ICountry[] =>
   countries.map(
     (c): ICountry => ({
-      id: c.alpha3Code,
+      id: c.alpha3Code.toLowerCase(),
       flag: c.flags.svg,
       name: c.name,
       nativeName: c.nativeName,
@@ -20,7 +20,7 @@ export const restCountryAdapter = (countries: ICountryAPI[]): ICountry[] =>
           const { alpha3Code, name } = countries.find(
             c => c.alpha3Code === b
           ) as ICountryAPI
-          return { id: alpha3Code, name }
+          return { id: alpha3Code.toLowerCase(), name }
         })
     })
   )

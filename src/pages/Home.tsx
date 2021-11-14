@@ -1,12 +1,25 @@
+import { Link } from 'react-router-dom'
 import { useCountries } from '../contexts/Countries'
 
 export const Home = () => {
   const { status, countries, error } = useCountries()
-  if (status === 'fetching') {
-    return <h1>Loading...</h1>
+
+  switch (status) {
+    case 'fetching':
+      return <h1>Loading...</h1>
+    case 'error':
+      return <h1>{error}</h1>
+    case 'fetched':
+      return (
+        <div>
+          {countries?.map(c => (
+            <div key={c.id}>
+              <Link to={c.id}>{c.name}</Link>
+            </div>
+          ))}
+        </div>
+      )
+    default:
+      return <></>
   }
-  if (status === 'error') {
-    return <h1>{error}</h1>
-  }
-  return <pre>{JSON.stringify(countries, null, 2)}</pre>
 }
