@@ -7,18 +7,17 @@ import {
   useMemo,
   useState
 } from 'react'
+import { getCustomTheme } from '../theme/custom'
 
 const ColorModeContext = createContext({ toggleColorMode: () => {} })
 const COLOR_MODE_KEY = 'colorMode'
 type TColorMode = 'light' | 'dark'
 
 export const ColorModeProvider: FC = ({ children }) => {
-  const savedMode = localStorage.getItem(COLOR_MODE_KEY)
-  const [mode, setMode] = useState<TColorMode>(
-    savedMode ? (savedMode as TColorMode) : 'light'
-  )
-
+  const savedMode = localStorage.getItem(COLOR_MODE_KEY) as TColorMode
+  const [mode, setMode] = useState<TColorMode>(savedMode || 'light')
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)')
+
   useEffect(() => {
     if (!savedMode) {
       setMode(prefersDarkMode ? 'dark' : 'light')
@@ -38,15 +37,7 @@ export const ColorModeProvider: FC = ({ children }) => {
     []
   )
 
-  const theme = useMemo(
-    () =>
-      createTheme({
-        palette: {
-          mode
-        }
-      }),
-    [mode]
-  )
+  const theme = useMemo(() => createTheme(getCustomTheme(mode)), [mode])
 
   return (
     <ColorModeContext.Provider value={colorMode}>

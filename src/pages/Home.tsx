@@ -1,5 +1,4 @@
 import { Grid, Container } from '@mui/material'
-import { Box } from '@mui/system'
 import { CountryCard } from '../components/CountryCard'
 import { useCountries } from '../contexts/Countries'
 
