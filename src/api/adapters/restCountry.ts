@@ -1,4 +1,4 @@
-import { ICountry, ICountryAPI } from '../interfaces/ICountry'
+import { ICountry, ICountryAPI } from '../../interfaces/ICountry'
 
 export const restCountryAdapter = (countries: ICountryAPI[]): ICountry[] =>
   countries.map(

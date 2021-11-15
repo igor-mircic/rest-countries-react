@@ -1,5 +1,5 @@
 import { createContext, FC, useContext } from 'react'
-import { restCountryAdapter } from '../adapters/restCountry'
+import { restCountryAdapter } from '../api/adapters/restCountry'
 import { url } from '../api/url'
 import { IFetchStatus, useFetch } from '../hooks/useFetch'
 import { ICountry } from '../interfaces/ICountry'
