@@ -1,5 +1,6 @@
-import { Link } from '@mui/material'
-import { Link as RouterLink } from 'react-router-dom'
+import { Grid, Container } from '@mui/material'
+import { Box } from '@mui/system'
+import { CountryCard } from '../components/CountryCard'
 import { useCountries } from '../contexts/Countries'
 
 export const Home = () => {
@@ -14,14 +15,14 @@ export const Home = () => {
   }
 
   return (
-    <div>
-      {countries?.map(c => (
-        <div key={c.id}>
-          <Link component={RouterLink} to={c.id}>
-            {c.name}
-          </Link>
-        </div>
-      ))}
-    </div>
+    <Container maxWidth="lg" sx={{ pt: 6 }}>
+      <Grid container spacing={8}>
+        {countries?.map(c => (
+          <Grid item xs={12} sm={6} md={4} lg={3}>
+            <CountryCard key={c.id} {...c} />
+          </Grid>
+        ))}
+      </Grid>
+    </Container>
   )
 }

@@ -1,5 +1,5 @@
 import { Brightness4, Brightness7 } from '@mui/icons-material'
-import { IconButton, Toolbar } from '@mui/material'
+import { AppBar, Button, Container, Toolbar, Typography } from '@mui/material'
 import { useTheme } from '@mui/system'
 import { useColorMode } from '../contexts/ColorMode'
 
@@ -9,13 +9,23 @@ export const Header = () => {
   const mode = theme.palette.mode
 
   return (
-    <div>
-      <Toolbar>
-        {mode + 'mode'}
-        <IconButton sx={{ ml: 1 }} onClick={toggleColorMode} color="inherit">
-          {theme.palette.mode === 'dark' ? <Brightness7 /> : <Brightness4 />}
-        </IconButton>
-      </Toolbar>
-    </div>
+    <AppBar position="sticky" sx={{ justifyContent: 'center' }}>
+      <Container maxWidth="lg">
+        <Toolbar disableGutters>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            Where in the world?
+          </Typography>
+          <Button
+            onClick={toggleColorMode}
+            color="inherit"
+            startIcon={
+              theme.palette.mode === 'dark' ? <Brightness7 /> : <Brightness4 />
+            }
+          >
+            {mode + ' mode'}
+          </Button>
+        </Toolbar>
+      </Container>
+    </AppBar>
   )
 }
