@@ -9,6 +9,12 @@ import { PaletteMode, ThemeOptions } from '@mui/material'
 
 export const getCustomTheme = (mode: PaletteMode) =>
   ({
+    typography: {
+      fontFamily: ['Nunito Sans', 'sans-serif'].join(','),
+      button: {
+        textTransform: 'capitalize'
+      }
+    },
     palette: {
       mode,
       ...(mode === 'light'
@@ -42,6 +48,11 @@ export const getCustomTheme = (mode: PaletteMode) =>
       MuiListItem: {
         defaultProps: {
           disableGutters: true
+        }
+      },
+      MuiSelect: {
+        defaultProps: {
+          sx: { backgroundColor: 'hsl(209, 23%, 22%)' }
         }
       }
     }

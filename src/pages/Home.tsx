@@ -1,5 +1,8 @@
-import { Grid, Container } from '@mui/material'
+import { Grid, Container, Stack } from '@mui/material'
+import { Box } from '@mui/system'
 import { CountryCard } from '../components/CountryCard'
+import { SearchBox } from '../components/SearchBox'
+import { SelectRegion } from '../components/SelectRegion'
 import { useCountries } from '../contexts/Countries'
 
 export const Home = () => {
@@ -14,7 +17,12 @@ export const Home = () => {
   }
 
   return (
-    <Container maxWidth="lg" sx={{ pt: 6 }}>
+    <Container maxWidth="lg">
+      <Stack direction="row" spacing={2} py={6}>
+        <SearchBox />
+        <Box flexGrow={1} />
+        <SelectRegion />
+      </Stack>
       <Grid container spacing={8}>
         {countries?.map(c => (
           <Grid item xs={12} sm={6} md={4} lg={3}>
