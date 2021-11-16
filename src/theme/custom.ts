@@ -7,8 +7,28 @@ import { PaletteMode, ThemeOptions } from '@mui/material'
 // - Very Light Gray (Light Mode Background): hsl(0, 0%, 98%)
 // - White (Dark Mode Text & Light Mode Elements): hsl(0, 0%, 100%)
 
-export const getCustomTheme = (mode: PaletteMode) =>
-  ({
+interface IColors {
+  default: string
+  paper: string
+  text: string
+}
+
+export const getCustomTheme = (mode: PaletteMode) => {
+  let clr: IColors
+  if (mode === 'light') {
+    clr = {
+      default: 'hsl(0, 0%, 98%)',
+      paper: 'hsl(0, 0%, 100%)',
+      text: 'hsl(200, 15%, 8%)'
+    }
+  } else {
+    clr = {
+      default: 'hsl(208, 26%, 17%)',
+      paper: 'hsl(209, 23%, 22%)',
+      text: 'hsl(0, 0%, 100%)'
+    }
+  }
+  const theme: ThemeOptions = {
     typography: {
       fontFamily: ['Nunito Sans', 'sans-serif'].join(','),
       button: {
@@ -17,27 +37,13 @@ export const getCustomTheme = (mode: PaletteMode) =>
     },
     palette: {
       mode,
-      ...(mode === 'light'
-        ? {
-            // palette values for light mode
-            background: {
-              default: 'hsl(0, 0%, 98%)',
-              paper: 'hsl(0, 0%, 100%)'
-            },
-            text: {
-              primary: 'hsl(200, 15%, 8%)'
-            }
-          }
-        : {
-            // palette values for dark mode
-            background: {
-              default: 'hsl(208, 26%, 17%)',
-              paper: 'hsl(209, 23%, 22%)'
-            },
-            text: {
-              primary: 'hsl(0, 0%, 100%)'
-            }
-          })
+      background: {
+        default: clr.default,
+        paper: clr.paper
+      },
+      text: {
+        primary: clr.text
+      }
     },
     components: {
       MuiAppBar: {
@@ -49,11 +55,8 @@ export const getCustomTheme = (mode: PaletteMode) =>
         defaultProps: {
           disableGutters: true
         }
-      },
-      MuiSelect: {
-        defaultProps: {
-          sx: { backgroundColor: 'hsl(209, 23%, 22%)' }
-        }
       }
     }
-  } as ThemeOptions)
+  }
+  return theme
+}

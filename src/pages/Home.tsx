@@ -1,12 +1,33 @@
 import { Grid, Container, Stack } from '@mui/material'
 import { Box } from '@mui/system'
+import { useEffect, useState } from 'react'
 import { CountryCard } from '../components/CountryCard'
 import { SearchBox } from '../components/SearchBox'
 import { SelectRegion } from '../components/SelectRegion'
 import { useCountries } from '../contexts/Countries'
+import { ICountry, TRegion } from '../interfaces/ICountry'
 
 export const Home = () => {
   const { status, countries, error } = useCountries()
+  const [region, setRegion] = useState<TRegion | ''>('')
+  const [nameQuery, setNameQuery] = useState('')
+
+  const [filteredCountries, setFilteredCountries] = useState<
+    ICountry[] | undefined
+  >(countries)
+
+  useEffect(() => {
+    const delayDebounceFn = setTimeout(() => {
+      setFilteredCountries(
+        countries?.filter(
+          c =>
+            c.name.toLowerCase().includes(nameQuery.toLowerCase()) &&
+            c.region.includes(region)
+        )
+      )
+    }, 400)
+    return () => clearTimeout(delayDebounceFn)
+  }, [countries, region, nameQuery])
 
   if (status === 'error') {
     console.log(`Error rendering Home page. Message:${error}`)
@@ -19,12 +40,12 @@ export const Home = () => {
   return (
     <Container maxWidth="lg">
       <Stack direction="row" spacing={2} py={6}>
-        <SearchBox />
+        <SearchBox onNameQueryChange={setNameQuery} />
         <Box flexGrow={1} />
-        <SelectRegion />
+        <SelectRegion onRegionChangeCallback={setRegion} />
       </Stack>
       <Grid container spacing={8}>
-        {countries?.map(c => (
+        {filteredCountries?.map(c => (
           <Grid item xs={12} sm={6} md={4} lg={3}>
             <CountryCard key={c.id} {...c} />
           </Grid>

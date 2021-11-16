@@ -1,22 +1,34 @@
-import Paper from '@mui/material/Paper'
-import InputBase from '@mui/material/InputBase'
-import IconButton from '@mui/material/IconButton'
 import SearchIcon from '@mui/icons-material/Search'
+import {
+  FilledInput,
+  FormControl,
+  InputAdornment,
+  InputLabel
+} from '@mui/material'
+import { ChangeEvent } from 'react'
 
-export const SearchBox = () => {
+interface Props {
+  onNameQueryChange: Function
+}
+
+export const SearchBox = ({ onNameQueryChange }: Props) => {
+  const handleChange = ({
+    target: { value }
+  }: ChangeEvent<HTMLInputElement>) => {
+    onNameQueryChange(value)
+  }
   return (
-    <Paper
-      component="form"
-      sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: 400 }}
-    >
-      <IconButton type="submit" sx={{ p: '10px' }} aria-label="search">
-        <SearchIcon />
-      </IconButton>
-      <InputBase
-        sx={{ ml: 1, flex: 1 }}
-        placeholder="Search for a country..."
-        inputProps={{ 'aria-label': 'search for a country' }}
+    <FormControl sx={{ minWidth: 250 }} variant="filled">
+      <InputLabel htmlFor="search-box-input">Search for country...</InputLabel>
+      <FilledInput
+        id="search-box-input"
+        onChange={handleChange}
+        endAdornment={
+          <InputAdornment position="end">
+            <SearchIcon />
+          </InputAdornment>
+        }
       />
-    </Paper>
+    </FormControl>
   )
 }

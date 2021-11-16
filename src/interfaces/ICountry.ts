@@ -4,7 +4,7 @@ export interface ICountry {
   name: string
   nativeName: string
   population: string
-  region: Region
+  region: TRegion
   subregion: string
   capital: string
   tld: string
@@ -21,24 +21,27 @@ export interface ICountryAPI {
   alpha3Code: string
   capital: string
   subregion: string
-  region: Region
+  region: TRegion
   population: number
   borders?: string[]
   nativeName: string
   flags: Flags
 }
 
-export type Region =
-  | 'Africa'
-  | 'Americas'
-  | 'Antarctic'
-  | 'Antarctic Ocean'
-  | 'Asia'
-  | 'Europe'
-  | 'Oceania'
-  | 'Polar'
+export const regions = [
+  'Africa',
+  'Americas',
+  'Antarctic',
+  'Antarctic Ocean',
+  'Asia',
+  'Europe',
+  'Oceania',
+  'Polar'
+] as const
 
-export interface Border {
+export type TRegion = typeof regions[number]
+
+interface Border {
   name: string
   id: string
 }

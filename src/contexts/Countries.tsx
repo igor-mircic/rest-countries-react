@@ -5,13 +5,13 @@ import { IFetchStatus, useFetch } from '../hooks/useFetch'
 import { ICountry } from '../interfaces/ICountry'
 
 interface ICountriesContext {
-  countries: ICountry[] | null
+  countries: ICountry[] | undefined
   status: IFetchStatus
   error: any
 }
 
 const initialContext: ICountriesContext = {
-  countries: null,
+  countries: undefined,
   status: 'idle',
   error: ''
 }

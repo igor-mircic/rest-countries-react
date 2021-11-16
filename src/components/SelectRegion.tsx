@@ -1,29 +1,32 @@
 import MenuItem from '@mui/material/MenuItem'
 import FormControl from '@mui/material/FormControl'
-import Select, { SelectChangeEvent } from '@mui/material/Select'
-import { useState } from 'react'
+import { InputLabel, Select, SelectChangeEvent } from '@mui/material'
+import { regions, TRegion } from '../interfaces/ICountry'
 
-export const SelectRegion = () => {
-  const [age, setAge] = useState('')
+interface Props {
+  onRegionChangeCallback: Function
+}
 
-  const handleChange = (event: SelectChangeEvent) => {
-    setAge(event.target.value)
+export const SelectRegion = ({ onRegionChangeCallback }: Props) => {
+  const handleChange = ({ target: { value } }: SelectChangeEvent) => {
+    onRegionChangeCallback(value as TRegion)
   }
-
   return (
-    <FormControl sx={{ minWidth: 220 }}>
+    <FormControl variant="filled" sx={{ minWidth: 180 }}>
+      <InputLabel id="demo-simple-select-filled-label">
+        Filter by Region
+      </InputLabel>
       <Select
-        value={age}
+        labelId="demo-simple-select-filled-label"
+        id="demo-simple-select-filled"
         onChange={handleChange}
-        displayEmpty
-        aria-label="region select"
       >
         <MenuItem value="">
-          <em>None</em>
+          <em>Clear Filter</em>
         </MenuItem>
-        <MenuItem value={10}>Ten</MenuItem>
-        <MenuItem value={20}>Twenty</MenuItem>
-        <MenuItem value={30}>Thirty</MenuItem>
+        {regions.map(r => (
+          <MenuItem value={r}>{r}</MenuItem>
+        ))}
       </Select>
     </FormControl>
   )
