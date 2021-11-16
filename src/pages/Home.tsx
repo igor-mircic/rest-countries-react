@@ -17,16 +17,13 @@ export const Home = () => {
   >(countries)
 
   useEffect(() => {
-    const delayDebounceFn = setTimeout(() => {
-      setFilteredCountries(
-        countries?.filter(
-          c =>
-            c.name.toLowerCase().includes(nameQuery.toLowerCase()) &&
-            c.region.includes(region)
-        )
+    setFilteredCountries(
+      countries?.filter(
+        c =>
+          c.name.toLowerCase().includes(nameQuery.toLowerCase()) &&
+          c.region.includes(region)
       )
-    }, 400)
-    return () => clearTimeout(delayDebounceFn)
+    )
   }, [countries, region, nameQuery])
 
   if (status === 'error') {
