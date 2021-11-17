@@ -1,7 +1,7 @@
 import MenuItem from '@mui/material/MenuItem'
 import FormControl from '@mui/material/FormControl'
 import { InputLabel, Select, SelectChangeEvent } from '@mui/material'
-import { regions, TRegion } from '../interfaces/ICountry'
+import { regions } from '../interfaces/ICountry'
 import { useEffect, useState } from 'react'
 
 interface Props {
