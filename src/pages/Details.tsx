@@ -14,11 +14,11 @@ import { Box } from '@mui/system'
 
 export const Details = () => {
   const { countryId } = useParams()
-  const { countries } = useCountries()
-  const country = countries?.find(c => c.id === countryId)
+  const { isLoading, countries } = useCountries()
+  const country = countries.find(c => c.id === countryId)
 
-  if (!country) {
-    return <h1>Loading...</h1>
+  if (isLoading) {
+    return <Typography variant="h1">Loading...</Typography>
   }
 
   return (
@@ -26,40 +26,46 @@ export const Details = () => {
       <Button component={Link} to="/" startIcon={<ArrowBack />}>
         Back
       </Button>
-      <Stack direction={{ xs: 'column', sm: 'row' }} spacing={16} pt={8}>
-        <Box
-          component="img"
-          src={country.flag}
-          alt={`${country.name}'s flag`}
-          sx={{ maxWidth: 500 }}
-        />
-        <Stack>
-          <Typography variant="h4">{country.name}</Typography>
-          <Stack direction={{ xs: 'column', sm: 'row' }} spacing={16}>
-            <List>
-              <ListItem>{`Native name: ${country.nativeName}`}</ListItem>
-              <ListItem>{`Population: ${country.population}`}</ListItem>
-              <ListItem>{`Region: ${country.region}`}</ListItem>
-              <ListItem>{`Sub region: ${country.subregion}`}</ListItem>
-              <ListItem>{`Capital: ${country.capital}`}</ListItem>
-            </List>
-            <List>
-              <ListItem>{`Top level domain: ${country.tld}`}</ListItem>
-              <ListItem>{`Currencies: ${country.currencies}`}</ListItem>
-              <ListItem>{`Languages: ${country.languages}`}</ListItem>
-            </List>
+      {!country ? (
+        <Typography variant="h4" pt={8}>
+          Country not found!
+        </Typography>
+      ) : (
+        <Stack direction={{ xs: 'column', sm: 'row' }} spacing={16} pt={8}>
+          <Box
+            component="img"
+            src={country.flag}
+            alt={`${country.name}'s flag`}
+            sx={{ maxWidth: 500 }}
+          />
+          <Stack>
+            <Typography variant="h4">{country.name}</Typography>
+            <Stack direction={{ xs: 'column', sm: 'row' }} spacing={16}>
+              <List>
+                <ListItem>{`Native name: ${country.nativeName}`}</ListItem>
+                <ListItem>{`Population: ${country.population}`}</ListItem>
+                <ListItem>{`Region: ${country.region}`}</ListItem>
+                <ListItem>{`Sub region: ${country.subregion}`}</ListItem>
+                <ListItem>{`Capital: ${country.capital}`}</ListItem>
+              </List>
+              <List>
+                <ListItem>{`Top level domain: ${country.tld}`}</ListItem>
+                <ListItem>{`Currencies: ${country.currencies}`}</ListItem>
+                <ListItem>{`Languages: ${country.languages}`}</ListItem>
+              </List>
+            </Stack>
+            <Grid container spacing={2}>
+              {country.borders?.map(b => (
+                <Grid item key={b.id}>
+                  <Button component={Link} to={`/${b.id}`}>
+                    {b.name}
+                  </Button>
+                </Grid>
+              ))}
+            </Grid>
           </Stack>
-          <Grid container spacing={2}>
-            {country.borders?.map(b => (
-              <Grid item key={b.id}>
-                <Button component={Link} to={`/${b.id}`}>
-                  {b.name}
-                </Button>
-              </Grid>
-            ))}
-          </Grid>
         </Stack>
-      </Stack>
+      )}
     </Container>
   )
 }

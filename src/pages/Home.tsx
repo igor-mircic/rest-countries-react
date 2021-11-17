@@ -1,4 +1,4 @@
-import { Grid, Container, Stack } from '@mui/material'
+import { Grid, Container, Stack, Typography } from '@mui/material'
 import { Box } from '@mui/system'
 import { useEffect, useState } from 'react'
 import { CountryCard } from '../components/CountryCard'
@@ -8,7 +8,7 @@ import { useCountries } from '../contexts/Countries'
 import { ICountry, TRegion } from '../interfaces/ICountry'
 
 export const Home = () => {
-  const { status, countries, error } = useCountries()
+  const { isLoading, countries } = useCountries()
   const [region, setRegion] = useState<TRegion | ''>('')
   const [nameQuery, setNameQuery] = useState('')
 
@@ -26,12 +26,8 @@ export const Home = () => {
     )
   }, [countries, region, nameQuery])
 
-  if (status === 'error') {
-    console.log(`Error rendering Home page. Message:${error}`)
-  }
-
-  if (status === 'idle' || status === 'fetching') {
-    return <h1>Loading...</h1>
+  if (isLoading) {
+    return <Typography variant="h1">Loading...</Typography>
   }
 
   return (
