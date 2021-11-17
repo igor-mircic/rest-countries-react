@@ -37,6 +37,12 @@ export const getCustomTheme = (mode: PaletteMode) => {
     },
     palette: {
       mode,
+      primary: {
+        main: clr.text
+      },
+      secondary: {
+        main: clr.paper
+      },
       background: {
         default: clr.default,
         paper: clr.paper
@@ -54,6 +60,17 @@ export const getCustomTheme = (mode: PaletteMode) => {
       MuiListItem: {
         defaultProps: {
           disableGutters: true
+        }
+      },
+      MuiContainer: {
+        defaultProps: {
+          maxWidth: 'lg'
+        }
+      },
+      MuiButton: {
+        defaultProps: {
+          color: 'secondary',
+          variant: 'contained'
         }
       }
     }

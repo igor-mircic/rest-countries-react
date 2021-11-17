@@ -35,7 +35,7 @@ export const Home = () => {
   }
 
   return (
-    <Container maxWidth="lg">
+    <Container>
       <Stack direction="row" spacing={2} py={6}>
         <SearchBox onNameQueryChange={setNameQuery} />
         <Box flexGrow={1} />

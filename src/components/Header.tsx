@@ -10,7 +10,7 @@ export const Header = () => {
 
   return (
     <AppBar position="sticky" sx={{ justifyContent: 'center' }}>
-      <Container maxWidth="lg">
+      <Container>
         <Toolbar disableGutters>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Where in the world?
@@ -18,6 +18,7 @@ export const Header = () => {
           <Button
             onClick={toggleColorMode}
             color="inherit"
+            variant="text"
             startIcon={
               theme.palette.mode === 'dark' ? <Brightness7 /> : <Brightness4 />
             }
