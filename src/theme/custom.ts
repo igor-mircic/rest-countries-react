@@ -35,6 +35,15 @@ export const getCustomTheme = (mode: PaletteMode) => {
         textTransform: 'capitalize'
       }
     },
+    breakpoints: {
+      values: {
+        xs: 0,
+        sm: 600,
+        md: 900,
+        lg: 1280,
+        xl: 1536
+      }
+    },
     palette: {
       mode,
       primary: {
@@ -54,7 +63,10 @@ export const getCustomTheme = (mode: PaletteMode) => {
     components: {
       MuiAppBar: {
         defaultProps: {
-          color: 'default'
+          color: 'default',
+          sx: {
+            height: 20
+          }
         }
       },
       MuiListItem: {

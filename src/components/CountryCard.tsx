@@ -24,7 +24,7 @@ export const CountryCard = ({
   capital
 }: Props) => {
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ width: 260 }}>
       <CardActionArea component={Link} to={id}>
         <CardMedia
           component="img"

@@ -3,6 +3,7 @@ import FormControl from '@mui/material/FormControl'
 import { InputLabel, Select, SelectChangeEvent } from '@mui/material'
 import { regions } from '../interfaces/ICountry'
 import { useEffect, useState } from 'react'
+import { Box } from '@mui/system'
 
 interface Props {
   onRegionChangeCallback: Function
@@ -23,7 +24,7 @@ export const SelectRegion = ({ onRegionChangeCallback }: Props) => {
     setValue(event.target.value)
   }
   return (
-    <FormControl variant="filled" sx={{ minWidth: 180 }}>
+    <Box component={FormControl} variant="filled" maxWidth={200} width={'100%'}>
       <InputLabel id="demo-simple-select-filled-label">
         Filter by Region
       </InputLabel>
@@ -37,9 +38,11 @@ export const SelectRegion = ({ onRegionChangeCallback }: Props) => {
           <em>Clear Filter</em>
         </MenuItem>
         {regions.map(r => (
-          <MenuItem value={r}>{r}</MenuItem>
+          <MenuItem key={r} value={r}>
+            {r}
+          </MenuItem>
         ))}
       </Select>
-    </FormControl>
+    </Box>
   )
 }

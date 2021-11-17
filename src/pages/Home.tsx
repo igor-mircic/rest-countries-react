@@ -1,4 +1,4 @@
-import { Grid, Container, Stack, Typography } from '@mui/material'
+import { Grid, Container, Stack } from '@mui/material'
 import { Box } from '@mui/system'
 import { useEffect, useState } from 'react'
 import { CountryCard } from '../components/CountryCard'
@@ -8,7 +8,7 @@ import { useCountries } from '../contexts/Countries'
 import { ICountry, TRegion } from '../interfaces/ICountry'
 
 export const Home = () => {
-  const { isLoading, countries } = useCountries()
+  const { countries } = useCountries()
   const [region, setRegion] = useState<TRegion | ''>('')
   const [nameQuery, setNameQuery] = useState('')
 
@@ -26,21 +26,23 @@ export const Home = () => {
     )
   }, [countries, region, nameQuery])
 
-  if (isLoading) {
-    return <Typography variant="h1">Loading...</Typography>
-  }
-
   return (
     <Container>
-      <Stack direction="row" spacing={2} py={6}>
+      <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} py={6}>
         <SearchBox onNameQueryChange={setNameQuery} />
         <Box flexGrow={1} />
         <SelectRegion onRegionChangeCallback={setRegion} />
       </Stack>
-      <Grid container spacing={8}>
+      <Grid
+        container
+        spacing={8}
+        direction="row"
+        alignItems="center"
+        justifyContent="space-around"
+      >
         {filteredCountries?.map(c => (
-          <Grid item xs={12} sm={6} md={4} lg={3}>
-            <CountryCard key={c.id} {...c} />
+          <Grid item key={c.id}>
+            <CountryCard {...c} />
           </Grid>
         ))}
       </Grid>

@@ -9,7 +9,7 @@ export const Header = () => {
   const mode = theme.palette.mode
 
   return (
-    <AppBar position="sticky" sx={{ justifyContent: 'center' }}>
+    <AppBar position="sticky" sx={{ justifyContent: 'center', height: 80 }}>
       <Container>
         <Toolbar disableGutters>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>

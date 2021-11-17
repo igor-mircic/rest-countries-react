@@ -5,6 +5,7 @@ import {
   InputAdornment,
   InputLabel
 } from '@mui/material'
+import { Box } from '@mui/system'
 import { ChangeEvent, useEffect, useState } from 'react'
 
 interface Props {
@@ -27,7 +28,7 @@ export const SearchBox = ({ onNameQueryChange }: Props) => {
   }
 
   return (
-    <FormControl sx={{ minWidth: 250 }} variant="filled">
+    <Box component={FormControl} variant="filled" maxWidth={480} width={'100%'}>
       <InputLabel htmlFor="search-box-input">Search for country...</InputLabel>
       <FilledInput
         id="search-box-input"
@@ -39,6 +40,6 @@ export const SearchBox = ({ onNameQueryChange }: Props) => {
           </InputAdornment>
         }
       />
-    </FormControl>
+    </Box>
   )
 }
