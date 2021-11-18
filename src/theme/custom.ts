@@ -84,6 +84,11 @@ export const getCustomTheme = (mode: PaletteMode) => {
           color: 'secondary',
           variant: 'contained'
         }
+      },
+      MuiSkeleton: {
+        defaultProps: {
+          animation: 'wave'
+        }
       }
     }
   }
