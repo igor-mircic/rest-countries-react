@@ -21,11 +21,7 @@ export const Details = () => {
       <Button component={Link} to="/" startIcon={<ArrowBack />}>
         Back
       </Button>
-      {!country ? (
-        <Typography variant="h4" pt={8}>
-          Country not found!
-        </Typography>
-      ) : (
+      {country && (
         <Grid container pt={8} spacing={{ xs: 4, md: 8, lg: 16 }}>
           <Grid item xs={12} md={6}>
             <Box
