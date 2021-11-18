@@ -33,13 +33,33 @@ export const CountryCard = ({
           height={150}
         />
         <CardContent>
-          <Typography gutterBottom variant="h6" component="div">
+          <Typography
+            fontWeight="800"
+            gutterBottom
+            variant="h6"
+            component="div"
+          >
             {name}
           </Typography>
           <List dense={true}>
-            <ListItem>{`Population: ${population}`}</ListItem>
-            <ListItem>{`Region: ${region}`}</ListItem>
-            <ListItem>{`Capital: ${capital}`}</ListItem>
+            <ListItem>
+              <Typography fontWeight="600" sx={{ paddingRight: 1 }}>
+                Population:
+              </Typography>
+              <Typography component="span">{population}</Typography>
+            </ListItem>
+            <ListItem>
+              <Typography fontWeight="600" sx={{ paddingRight: 1 }}>
+                Region:
+              </Typography>
+              <Typography component="span">{region}</Typography>
+            </ListItem>
+            <ListItem>
+              <Typography fontWeight="600" sx={{ paddingRight: 1 }}>
+                Capital:
+              </Typography>
+              <Typography component="span">{capital}</Typography>
+            </ListItem>
           </List>
         </CardContent>
       </CardActionArea>

@@ -12,7 +12,11 @@ export const Header = () => {
     <AppBar position="sticky" sx={{ justifyContent: 'center', height: 80 }}>
       <Container>
         <Toolbar disableGutters>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          <Typography
+            sx={{ flexGrow: 1, fontWeight: 800 }}
+            variant="h6"
+            component="h1"
+          >
             Where in the world?
           </Typography>
           <Button
@@ -23,7 +27,7 @@ export const Header = () => {
               theme.palette.mode === 'dark' ? <Brightness7 /> : <Brightness4 />
             }
           >
-            {mode + ' mode'}
+            <Typography sx={{ fontWeight: 600 }}>{mode + ' mode'}</Typography>
           </Button>
         </Toolbar>
       </Container>

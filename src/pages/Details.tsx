@@ -13,12 +13,8 @@ import { Box } from '@mui/system'
 
 export const Details = () => {
   const { countryId } = useParams()
-  const { isLoading, countries } = useCountries()
+  const { countries } = useCountries()
   const country = countries.find(c => c.id === countryId)
-
-  if (isLoading) {
-    return <Typography variant="h1">Loading...</Typography>
-  }
 
   return (
     <Container sx={{ py: 6 }}>
@@ -36,7 +32,7 @@ export const Details = () => {
               component="img"
               src={country.flag}
               alt={`${country.name}'s flag`}
-              sx={{ maxWidth: 500, width: '100%' }}
+              sx={{ maxWidth: 500, width: '100%', boxShadow: 1 }}
             />
           </Grid>
           <Grid item xs={12} md={6}>
