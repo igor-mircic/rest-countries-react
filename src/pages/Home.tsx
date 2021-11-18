@@ -35,10 +35,10 @@ export const Home = () => {
       </Stack>
       <Grid
         container
-        spacing={8}
-        direction="row"
+        spacing={{ xs: 8, sm: 8 }}
+        direction={{ xs: 'column', sm: 'row' }}
         alignItems="center"
-        justifyContent="space-around"
+        justifyContent={{ xs: 'center', lg: 'flex-start' }}
       >
         {filteredCountries?.map(c => (
           <Grid item key={c.id}>
