@@ -76,7 +76,10 @@ export const getCustomTheme = (mode: PaletteMode) => {
       },
       MuiContainer: {
         defaultProps: {
-          maxWidth: 'lg'
+          sx: {
+            width: '100%',
+            maxWidth: { xs: 385, md: 635, lg: 960, xl: 1280 }
+          }
         }
       },
       MuiButton: {

@@ -31,17 +31,16 @@ export const Home = () => {
 
   return (
     <Container>
-      <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} py={6}>
+      <Stack direction={{ xs: 'column', md: 'row' }} spacing={2} py={6}>
         <SearchBox onNameQueryChange={setNameQuery} />
         <Box flexGrow={1} />
         <SelectRegion onRegionChangeCallback={setRegion} />
       </Stack>
       <Grid
         container
-        spacing={{ xs: 8, sm: 8 }}
-        direction={{ xs: 'column', sm: 'row' }}
+        spacing={8}
+        direction={{ xs: 'column', md: 'row' }}
         alignItems="center"
-        justifyContent={{ xs: 'center', lg: 'flex-start' }}
       >
         {isLoading
           ? _.times(12, i => (
