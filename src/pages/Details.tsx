@@ -61,10 +61,10 @@ export const Details = () => {
                     </Grid>
                   </Grid>
                   {country.borders && country.borders.length > 0 && (
-                    <Grid item>
+                    <Grid item mb={8}>
                       <Grid container spacing={2}>
                         <Grid item>
-                          <Box sx={{ mt: 8 }}>Borders:</Box>
+                          <Box sx={{ mt: 0.7 }}>Borders:</Box>
                         </Grid>
                         {country.borders?.map(b => (
                           <Grid item key={b.id}>
