@@ -4,7 +4,8 @@ import CardContent from '@mui/material/CardContent'
 import CardMedia from '@mui/material/CardMedia'
 import Typography from '@mui/material/Typography'
 import { Link } from 'react-router-dom'
-import { CardActionArea, List, ListItem } from '@mui/material'
+import { CardActionArea, List } from '@mui/material'
+import { CountryListItem } from './CountryListItem'
 
 interface Props {
   id: string
@@ -42,24 +43,9 @@ export const CountryCard = ({
             {name}
           </Typography>
           <List dense={true}>
-            <ListItem>
-              <Typography fontWeight="600" sx={{ paddingRight: 1 }}>
-                Population:
-              </Typography>
-              <Typography component="span">{population}</Typography>
-            </ListItem>
-            <ListItem>
-              <Typography fontWeight="600" sx={{ paddingRight: 1 }}>
-                Region:
-              </Typography>
-              <Typography component="span">{region}</Typography>
-            </ListItem>
-            <ListItem>
-              <Typography fontWeight="600" sx={{ paddingRight: 1 }}>
-                Capital:
-              </Typography>
-              <Typography component="span">{capital}</Typography>
-            </ListItem>
+            <CountryListItem label={'Population'} item={population} />
+            <CountryListItem label={'Region'} item={region} />
+            <CountryListItem label={'Capital'} item={capital} />
           </List>
         </CardContent>
       </CardActionArea>
