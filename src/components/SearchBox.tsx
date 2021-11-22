@@ -6,7 +6,7 @@ import {
   InputLabel
 } from '@mui/material'
 import { Box } from '@mui/system'
-import { ChangeEvent, useEffect, useState } from 'react'
+import { ChangeEvent, useEffect } from 'react'
 import { useLocalStorage } from '../hooks/useLocalStorage'
 
 interface Props {
