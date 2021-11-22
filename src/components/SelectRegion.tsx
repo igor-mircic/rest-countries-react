@@ -2,15 +2,16 @@ import MenuItem from '@mui/material/MenuItem'
 import FormControl from '@mui/material/FormControl'
 import { InputLabel, Select, SelectChangeEvent } from '@mui/material'
 import { regions } from '../interfaces/ICountry'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { Box } from '@mui/system'
+import { useLocalStorage } from '../hooks/useLocalStorage'
 
 interface Props {
   onRegionChangeCallback: Function
 }
 
 export const SelectRegion = ({ onRegionChangeCallback }: Props) => {
-  const [value, setValue] = useState('')
+  const [value, setValue] = useLocalStorage('region', '')
 
   useEffect(() => {
     const delayDebounceFn = setTimeout(() => {

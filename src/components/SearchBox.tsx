@@ -7,13 +7,14 @@ import {
 } from '@mui/material'
 import { Box } from '@mui/system'
 import { ChangeEvent, useEffect, useState } from 'react'
+import { useLocalStorage } from '../hooks/useLocalStorage'
 
 interface Props {
   onNameQueryChange: Function
 }
 
 export const SearchBox = ({ onNameQueryChange }: Props) => {
-  const [value, setValue] = useState('')
+  const [value, setValue] = useLocalStorage('nameQuery', '')
 
   useEffect(() => {
     const delayDebounceFn = setTimeout(() => {

@@ -6,14 +6,15 @@ import { CountryCardSkeleton } from '../components/CountryCardSkeleton'
 import { SearchBox } from '../components/SearchBox'
 import { SelectRegion } from '../components/SelectRegion'
 import { useCountries } from '../contexts/Countries'
-import { ICountry, TRegion } from '../interfaces/ICountry'
+import { ICountry } from '../interfaces/ICountry'
 import _ from 'lodash'
+import { useLocalStorage } from '../hooks/useLocalStorage'
 
 export const Home = () => {
   const { countries, isLoading } = useCountries()
-  const [region, setRegion] = useState<TRegion | ''>('')
-  const [nameQuery, setNameQuery] = useState('')
-  const [page, setPage] = useState(1)
+  const [region, setRegion] = useLocalStorage('region', '')
+  const [nameQuery, setNameQuery] = useLocalStorage('nameQuery', '')
+  const [page, setPage] = useLocalStorage('page', 1)
   const [pageCnt, setPageCnt] = useState(1)
 
   const [filteredCountries, setFilteredCountries] = useState<
