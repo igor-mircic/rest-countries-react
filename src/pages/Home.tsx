@@ -1,6 +1,6 @@
-import { Grid, Container, Stack } from '@mui/material'
+import { Grid, Container, Stack, Pagination } from '@mui/material'
 import { Box } from '@mui/system'
-import { useEffect, useState } from 'react'
+import { ChangeEvent, useEffect, useState } from 'react'
 import { CountryCard } from '../components/CountryCard'
 import { CountryCardSkeleton } from '../components/CountryCardSkeleton'
 import { SearchBox } from '../components/SearchBox'
@@ -13,21 +13,30 @@ export const Home = () => {
   const { countries, isLoading } = useCountries()
   const [region, setRegion] = useState<TRegion | ''>('')
   const [nameQuery, setNameQuery] = useState('')
-  // const isLoading = true
+  const [page, setPage] = useState(1)
+  const [pageCnt, setPageCnt] = useState(1)
 
   const [filteredCountries, setFilteredCountries] = useState<
     ICountry[] | undefined
-  >(countries)
+  >(undefined)
 
   useEffect(() => {
-    setFilteredCountries(
+    const filteredChunks = _.chunk(
       countries?.filter(
         c =>
           c.name.toLowerCase().includes(nameQuery.toLowerCase()) &&
           c.region.includes(region)
-      )
+      ),
+      24
     )
-  }, [countries, region, nameQuery])
+    setPageCnt(filteredChunks.length - 1)
+    setFilteredCountries(filteredChunks[page - 1])
+  }, [countries, region, nameQuery, page])
+
+  const handleChange = (event: ChangeEvent<unknown>, value: number) => {
+    setPage(value)
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
+  }
 
   return (
     <Container>
@@ -48,12 +57,20 @@ export const Home = () => {
                 <CountryCardSkeleton />
               </Grid>
             ))
-          : filteredCountries?.map(c => (
-              <Grid item key={c.id}>
-                <CountryCard {...{ isLoading, ...c }} />
-              </Grid>
-            ))}
+          : filteredCountries &&
+            filteredCountries.map(c => {
+              return (
+                <Grid item key={c.id}>
+                  <CountryCard {...{ isLoading, ...c }} />
+                </Grid>
+              )
+            })}
       </Grid>
+      {pageCnt > 1 && (
+        <Box display="flex" justifyContent="center" py={2}>
+          <Pagination count={pageCnt} page={page} onChange={handleChange} />
+        </Box>
+      )}
     </Container>
   )
 }
