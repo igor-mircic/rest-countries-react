@@ -12,7 +12,7 @@ export const restCountryAdapter = (countries: ICountryAPI[]): ICountry[] =>
       subregion: c.subregion,
       capital: c.capital,
       tld: c.topLevelDomain.join(', '),
-      currencies: c.currencies.map(c => c.name).join(', '),
+      currencies: c.currencies ? c.currencies.map(c => c.name).join(', ') : '',
       languages: c.languages.map(l => l.name).join(', '),
       borders:
         c.borders &&
